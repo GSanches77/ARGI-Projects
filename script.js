@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const typeText = async (element, text, speed) => {
         let i = 0;
         element.textContent = '';
-        element.appendChild(cursor); // Adiciona o cursor ao elemento
+        element.appendChild(cursor);
         
         return new Promise(resolve => {
             const timer = setInterval(() => {
