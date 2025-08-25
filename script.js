@@ -1,12 +1,10 @@
 document.addEventListener('DOMContentLoaded', () => {
 
-    // --- Efeito de Digitação ---
     const titleElement = document.getElementById('typing-title');
     const subtitleElement = document.getElementById('typing-subtitle');
     const mainTitle = "ARGI Projects";
     const subtitle = "Explore our innovative technology and automation solutions.";
     
-    // Cria um único elemento de cursor
     const cursor = document.createElement('span');
     cursor.textContent = '|';
     cursor.classList.add('typing-cursor');
@@ -42,7 +40,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     startTyping();
 
-    // --- Funcionalidade de Filtro de Cards ---
     const filterButtons = document.querySelectorAll('.filter-btn');
     const projects = document.querySelectorAll('.projeto-card');
 
