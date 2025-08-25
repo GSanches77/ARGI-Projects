@@ -1,0 +1,483 @@
+/* Paleta de Cores da ARG */
+:root {
+    --bg-dark: #121212;
+    --card-bg: #1e1e1e;
+    --border-color: #2c2c2c;
+    --text-light: #f0f0f0;
+    --text-subtle: #a0a0a0;
+    --accent-color: #007bff; /* Azul primário para botões e destaque */
+    --accent-hover: #0056b3;
+    --card-hover-shadow: rgba(0, 123, 255, 0.2);
+}
+
+/* Estilos Gerais */
+body {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: var(--bg-dark);
+    color: var(--text-light);
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+header {
+    background-color: #1a1a1a;
+    padding: 5rem 0 3rem;
+    text-align: center;
+    border-bottom: 1px solid var(--border-color);
+    position: relative; 
+    z-index: 1; 
+    overflow: hidden; /* Garante que o robô não ultrapasse os limites do header */
+}
+
+/* Estilo para a nova camada de fundo do header */
+.header-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at center, rgba(0,0,0,0.5), rgba(0,0,0,0));
+    z-index: -1; 
+    overflow: hidden;
+}
+
+/* Animação para o fundo */
+.header-background::before,
+.header-background::after {
+    content: '';
+    position: absolute;
+    border-radius: 50%;
+    background: rgba(0, 123, 255, 0.1);
+    animation: move-bg 15s infinite alternate ease-in-out;
+}
+
+.header-background::before {
+    width: 150%;
+    height: 150%;
+    top: -25%;
+    left: -25%;
+    animation-delay: 0s;
+}
+
+.header-background::after {
+    width: 180%;
+    height: 180%;
+    top: -50%;
+    left: -50%;
+    background: rgba(0, 123, 255, 0.05);
+    animation-delay: -5s;
+}
+
+@keyframes move-bg {
+    from {
+        transform: translate(0, 0) scale(1);
+    }
+    to {
+        transform: translate(50%, 50%) scale(1.2);
+    }
+}
+
+/* Estilos para o robô 3D */
+.spline-robot {
+    position: absolute;
+    bottom: -100px;
+    left: -5%;
+    transform: translateY(0);
+    width: 700px;
+    height: 700px;
+    z-index: 0;
+    opacity: 0.9;
+}
+
+/* Ajuste para telas menores */
+@media (max-width: 768px) {
+    .spline-robot {
+        width: 280px;
+        height: 280px;
+        bottom: -50px;
+        left: 5%;
+    }
+}
+
+/* Estilos para o texto no canto inferior direito */
+.header-credits {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    font-size: 0.8rem;
+    color: var(--text-subtle);
+    opacity: 0.6;
+}
+
+header h1 {
+    font-size: 3.5rem;
+    font-weight: 600;
+    color: #fff;
+    margin: 0;
+}
+
+header p {
+    font-size: 1.1rem;
+    color: var(--text-subtle);
+    margin-top: 0.5rem;
+}
+
+main {
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding: 0 1rem;
+}
+
+/* Estilos dos Botões de Filtro */
+.filters {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.filter-btn {
+    background-color: var(--card-bg);
+    color: var(--text-subtle);
+    border: 1px solid var(--border-color);
+    padding: 0.75rem 1.5rem;
+    margin: 0 0.5rem;
+    border-radius: 50px;
+    font-size: 1rem;
+    font-weight: 400;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.filter-btn:hover {
+    background-color: #282828;
+    color: var(--text-light);
+}
+
+.filter-btn.active {
+    background-color: var(--accent-color);
+    color: #fff;
+    border-color: var(--accent-color);
+    box-shadow: 0 2px 10px var(--accent-hover);
+}
+
+/* Estilos dos Cards de Projeto */
+.card-container {
+    display: grid;
+    gap: 1.5rem;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+}
+
+.projeto-card {
+    background-color: var(--card-bg);
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    /* Animação de entrada */
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInSlideUp 0.6s ease forwards;
+}
+
+/* Atraso para a animação de cada card */
+.projeto-card:nth-child(1) { animation-delay: 0.1s; }
+.projeto-card:nth-child(2) { animation-delay: 0.2s; }
+.projeto-card:nth-child(3) { animation-delay: 0.3s; }
+/* ...adicione mais para cada card... */
+
+.projeto-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 8px 25px var(--card-hover-shadow);
+}
+
+.projeto-img {
+    height: 200px;
+    overflow: hidden;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.projeto-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.3s ease;
+}
+
+.projeto-card:hover .projeto-img img {
+    transform: scale(1.05); /* Efeito de zoom na imagem */
+}
+
+.projeto-content {
+    padding: 1.5rem;
+}
+
+.projeto-content h3 {
+    font-size: 1.5rem;
+    color: var(--text-light);
+    margin: 0 0 0.5rem;
+}
+
+.projeto-content p {
+    font-size: 0.95rem;
+    color: var(--text-subtle);
+    margin: 0 0 1rem;
+}
+
+.action-btn {
+    background-color: var(--accent-color);
+    color: #fff;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: 5px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.action-btn:hover {
+    background-color: var(--accent-hover);
+}
+
+/* Ocultar cards */
+.projeto-card.hidden {
+    display: none;
+}
+
+footer {
+    text-align: center;
+    padding: 2rem;
+    background-color: #1a1a1a;
+    color: var(--text-subtle);
+    margin-top: 3rem;
+    border-top: 1px solid var(--border-color);
+}
+
+/* Keyframes para a animação */
+@keyframes fadeInSlideUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Estilo para o Logo */
+.logo-container {
+    text-align: center;
+    margin-bottom: 2rem;
+    animation: moveLogo 3s infinite alternate ease-in-out;
+}
+
+.logo {
+    max-width: 290px; /* Tamanho máximo do logo */
+    height: auto;
+    display: inline-block;
+}
+
+@keyframes moveLogo {
+    from {
+        transform: translateY(0px);
+    }
+    to {
+        transform: translateY(-15px); /* Ajuste a distância do movimento vertical */
+    }
+}
+
+/* Ajuste no cabeçalho para acomodar o logo */
+header {
+    padding-top: 3rem; 
+    padding-bottom: 3rem; 
+}
+
+/* Estilo para o cursor de digitação */
+.typing-cursor {
+    display: inline-block;
+    color: var(--text-light);
+    font-size: 1em;
+    font-weight: 300;
+    margin-left: 5px;
+    animation: blink 0.7s infinite;
+}
+
+/* --- Vertical Timeline Styles --- */
+.timeline-section {
+    max-width: 800px;
+    margin: 4rem auto;
+    padding: 0 1rem;
+    text-align: center;
+}
+
+.timeline-section h2 {
+    font-size: 2.5rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    color: var(--text-light);
+}
+
+.timeline-section p {
+    font-size: 1.1rem;
+    color: var(--text-subtle);
+    margin-bottom: 3rem;
+}
+
+.timeline {
+    position: relative;
+    padding: 1rem 0;
+}
+
+/* A linha vertical */
+.timeline::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: 2px;
+    height: 100%;
+    background-color: var(--border-color);
+    transform: translateX(-50%);
+}
+
+.timeline-item {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 2rem;
+}
+
+.timeline-item:nth-child(odd) {
+    flex-direction: row-reverse;
+}
+
+.timeline-icon {
+    width: 40px;
+    height: 40px;
+    background-color: var(--accent-color);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1;
+    font-size: 1.5rem;
+    color: #fff;
+    flex-shrink: 0;
+    /* Centralização Ajustada */
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.timeline-item:nth-child(even) .timeline-icon {
+    left: calc(50% - 20px); /* Metade da largura do ícone */
+}
+
+.timeline-item:nth-child(odd) .timeline-icon {
+    right: calc(50% - 20px); /* Metade da largura do ícone */
+}
+
+.timeline-content {
+    width: 45%;
+    padding: 1.5rem;
+    background-color: var(--card-bg);
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    text-align: left;
+    position: relative;
+}
+
+.timeline-item:nth-child(even) .timeline-content {
+    margin-left: calc(50% + 20px); /* Empurra o conteúdo para a direita */
+}
+
+.timeline-item:nth-child(odd) .timeline-content {
+    margin-right: calc(50% + 20px); /* Empurra o conteúdo para a esquerda */
+}
+
+.timeline-content h3 {
+    margin: 0 0 0.5rem;
+    font-size: 1.3rem;
+}
+
+.timeline-content p {
+    margin: 0;
+    font-size: 0.95rem;
+    color: var(--text-subtle);
+}
+
+.timeline-date {
+    display: block;
+    margin-top: 1rem;
+    font-size: 0.85rem;
+    color: var(--accent-color);
+    font-weight: 600;
+}
+
+/* Seta para a linha */
+.timeline-item:nth-child(odd) .timeline-content::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    right: -10px;
+    transform: translateY(-50%) rotate(45deg);
+    width: 20px;
+    height: 20px;
+    background-color: var(--card-bg);
+    border-top: 1px solid var(--border-color);
+    border-right: 1px solid var(--border-color);
+    z-index: 0;
+}
+
+.timeline-item:nth-child(even) .timeline-content::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: -10px;
+    transform: translateY(-50%) rotate(45deg);
+    width: 20px;
+    height: 20px;
+    background-color: var(--card-bg);
+    border-bottom: 1px solid var(--border-color);
+    border-left: 1px solid var(--border-color);
+    z-index: 0;
+}
+
+/* Ajustes responsivos */
+@media (max-width: 768px) {
+    .timeline::before {
+        left: 20px;
+    }
+
+    .timeline-item {
+        flex-direction: column;
+        align-items: flex-start;
+        margin-left: 50px;
+    }
+
+    .timeline-item:nth-child(odd) {
+        flex-direction: column;
+    }
+
+    .timeline-icon {
+        position: absolute;
+        left: -45px;
+        top: 0;
+    }
+
+    .timeline-content {
+        width: 100%;
+        text-align: left;
+    }
+
+    .timeline-content::before,
+    .timeline-item:nth-child(odd) .timeline-content::before {
+        left: -10px;
+        right: auto;
+        transform: translateY(-50%) rotate(45deg);
+    }
+}
