@@ -78,7 +78,7 @@ header {
 .spline-robot {
     position: absolute;
     bottom: -80px;
-    left: -15%;
+    left: -10%;
     transform: translateY(0);
     width: 650px;
     height: 650px;
